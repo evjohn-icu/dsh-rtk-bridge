@@ -1,7 +1,6 @@
 {
   "name": "dsh-rtk-bridge",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "description": "DeepSeek Harness plugin: routes shell commands through the local rtk CLI (Rust Token Killer) at the shell seam so compressed tool output reaches the model.",
   "main": "./index.js",
