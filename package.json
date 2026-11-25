@@ -1,0 +1,56 @@
+{
+  "name": "dsh-rtk-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "DeepSeek Harness plugin: routes shell commands through the local rtk CLI (Rust Token Killer) at the shell seam so compressed tool output reaches the model.",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "dsh.plugin.json",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "rtk",
+    "token-compression",
+    "shell",
+    "cordis"
+  ],
+  "author": "evjohn-icu",
+  "license": "MIT",
+  "homepage": "https://github.com/evjohn-icu/dsh-rtk-bridge#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evjohn-icu/dsh-rtk-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evjohn-icu/dsh-rtk-bridge/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

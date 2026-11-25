@@ -1,0 +1,13 @@
+# Routes eligible shell commands through the local rtk CLI (Rust Token Killer)
+# so compressed tool output reaches the model. Requires rtk on PATH; without
+# it every command passes through unchanged.
+- insert:
+    - id: dsh-rtk
+      name: 'dsh-rtk-bridge'
+      config:
+        enabled: true
+        # The Electron main process PATH is often minimal (/usr/bin:/bin:...);
+        # if the default candidate chain (rtk, common install locations) does
+        # not find your binary, pin the absolute path here:
+        # rtkExe: /opt/homebrew/bin/rtk
+        # rewriteTimeoutMs: 3000          # per-rewrite subprocess deadline

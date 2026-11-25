@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "rtk output compressor",
+    "description": "Routes shell commands through the local rtk CLI so tool output is compressed before it reaches the model. Commands rtk cannot handle run unchanged; requires rtk on PATH."
+  }
+}

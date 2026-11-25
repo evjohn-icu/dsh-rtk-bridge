@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "rtk 输出压缩器",
+    "description": "把 shell 命令交给本机 rtk 压缩输出后再进入模型上下文；rtk 无法处理的命令原样执行，需要 PATH 中已安装 rtk。"
+  }
+}
