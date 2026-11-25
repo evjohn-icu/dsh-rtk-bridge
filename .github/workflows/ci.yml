@@ -9,13 +9,24 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --test "tests/*.test.mjs"
-      # Syntax gate: the plugin must load as ESM on every platform.
+      - run: npm test
+
+  windows:
+    # The hermetic stubs are POSIX shell scripts, so the full suite runs on
+    # Ubuntu/macOS; Windows CI gates syntax and packaging. Run the suite on
+    # Windows locally from Git Bash.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - run: node --check index.js
+      - run: npm pack --dry-run

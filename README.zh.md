@@ -110,8 +110,10 @@ macOS + rtk 1.2.1 实测：
 ```bash
 npm test
 # 或直接：
-node --test tests/
+node --test "tests/*.test.mjs"
 ```
+
+hermetic 桩是 POSIX shell 脚本：在 Windows 上请从 Git Bash 运行测试套件（CI 在 Ubuntu/macOS 跑完整套件，Windows 只做语法与打包检查）。
 
 ## 许可证
 

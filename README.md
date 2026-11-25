@@ -110,8 +110,10 @@ After installing and restarting the Harness, run `git status` in a git repositor
 ```bash
 npm test
 # or directly:
-node --test tests/
+node --test "tests/*.test.mjs"
 ```
+
+The hermetic stubs are POSIX shell scripts: run the suite from Git Bash on Windows (CI runs the full suite on Ubuntu/macOS and a syntax/packaging check on Windows).
 
 ## License
 
