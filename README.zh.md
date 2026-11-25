@@ -1,23 +1,26 @@
 # dsh-rtk-bridge
 
-[English](README.md) | 中文
+[![CI](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+[English](README.md) | **中文**
 
 一个 DeepSeek Harness（DSH）插件：在执行前把符合条件的 shell 命令交给本机 [rtk](https://github.com/rtk-ai/rtk)（Rust Token Killer）改写，让模型读到的是压缩后的工具输出，而不是原始字节。它只是一个很薄的接缝封装：零 DSH 内部模块 import，除命令字符串本身外，执行行为没有任何改变。
 
 ```text
-$ git status                  # 改写前：469 B 原始输出
+$ git status
 On branch main
-Your branch is up to date with 'origin/main'.
-Changes not staged for commit:
-  modified:   src/index.js
-  modified:   README.md
-no changes added to commit
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	b.txt
 
-$ rtk git status              # 改写后：109 B，缩小 76.8%
-main ≡ origin/main  M src/index.js  M README.md
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ rtk git status
+* main
+?? b.txt
 ```
 
-（输出内容为示意；字节数为实测，见下文「实测数据」。）
+rtk 的压缩输出保留了分支与全部状态项；实测场景下输出缩小 34–77%（见下文「实测数据」）。
 
 ## 工作原理
 
@@ -43,18 +46,20 @@ main ≡ origin/main  M src/index.js  M README.md
 
 ## 安装
 
-```bash
-# npm 包
-dsh plugin --profile <your-profile> add dsh-rtk-bridge
+先安装 [rtk](https://github.com/rtk-ai/rtk)——macOS 用 `brew install rtk`，或 `cargo install rtk`、官方发布二进制（全平台方式见 rtk README）——然后：
 
+```bash
 # GitHub Release tgz
 dsh plugin --profile <your-profile> add https://github.com/evjohn-icu/dsh-rtk-bridge/releases/latest/download/dsh-rtk-bridge.tgz
+
+# npm 包
+dsh plugin --profile <your-profile> add dsh-rtk-bridge
 
 # 本地目录
 dsh plugin --profile <your-profile> add /path/to/your/dsh-rtk-bridge-checkout
 ```
 
-安装完成后重启 Harness 生效。收录情况也可以在 DSH Web 的插件市场（dsh-market 社区索引）里搜索确认。
+桌面版 profile 名为 `desktop`。安装完成后重启 Harness 生效。
 
 ### 要求
 

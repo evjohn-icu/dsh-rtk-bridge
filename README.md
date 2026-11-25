@@ -1,23 +1,26 @@
 # dsh-rtk-bridge
 
-English | [中文](README.zh.md)
+[![CI](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+**English** | [中文](README.zh.md)
 
 A DeepSeek Harness (DSH) plugin that routes eligible shell commands through the local [rtk](https://github.com/rtk-ai/rtk) (Rust Token Killer) CLI before execution, so the model reads compressed tool output instead of raw bytes. It is a thin seam wrapper: zero DSH internal modules are imported, and nothing about command execution changes except the command string itself.
 
 ```text
-$ git status                  # before: 469 B of raw output
+$ git status
 On branch main
-Your branch is up to date with 'origin/main'.
-Changes not staged for commit:
-  modified:   src/index.js
-  modified:   README.md
-no changes added to commit
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	b.txt
 
-$ rtk git status              # after: 109 B — 76.8% smaller
-main ≡ origin/main  M src/index.js  M README.md
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ rtk git status
+* main
+?? b.txt
 ```
 
-(Output content is illustrative; the byte counts are measured — see [Benchmarks](#benchmarks).)
+rtk's condensed output keeps the branch and every status entry; on the benchmarked scenarios it is 34–77% smaller (see [Benchmarks](#benchmarks)).
 
 ## How it works
 
@@ -43,18 +46,20 @@ For every eligible command the plugin calls `rtk rewrite <command>` and applies 
 
 ## Install
 
-```bash
-# npm package
-dsh plugin --profile <your-profile> add dsh-rtk-bridge
+Install [rtk](https://github.com/rtk-ai/rtk) first — `brew install rtk` on macOS, `cargo install rtk`, or a release binary (see the rtk README for all platforms) — then:
 
+```bash
 # GitHub release tarball
 dsh plugin --profile <your-profile> add https://github.com/evjohn-icu/dsh-rtk-bridge/releases/latest/download/dsh-rtk-bridge.tgz
+
+# npm package
+dsh plugin --profile <your-profile> add dsh-rtk-bridge
 
 # local checkout
 dsh plugin --profile <your-profile> add /path/to/your/dsh-rtk-bridge-checkout
 ```
 
-Restart the Harness after installing so the plugin takes effect. Listing availability can also be checked by searching the plugin marketplace in DSH Web (dsh-market community index).
+On the Desktop app the profile is `desktop`. Restart the Harness after installing so the plugin takes effect.
 
 ### Requirements
 
