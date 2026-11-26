@@ -1,6 +1,6 @@
 # dsh-rtk-bridge
 
-[![CI](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/evjohn-icu/dsh-rtk-bridge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 **English** | [中文](README.zh.md)
 
